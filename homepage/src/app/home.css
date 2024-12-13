@@ -1,0 +1,7 @@
+.home-container {
+  display: grid;
+  height: 90vh;
+  grid-template-columns: 20% 60% 20%;
+  gap: 10px;
+  background-color: green;
+}/*# sourceMappingURL=home.css.map */
