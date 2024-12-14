@@ -2,6 +2,27 @@
   display: grid;
   height: 100vh - 10vh;
   grid-template-columns: 20% 60% 20%;
-  gap: 10px;
+  // gap: 10px;
   background-color: lightblue;
+  
+
+  // Widget Drag/Drop Styling
+  /* Styling for individual widgets */
+  .widget-wrapper {
+    border: 1px solid red;
+    min-height: 250px;
+    align-self: start;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .widget-dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+  .widget-over {
+    border: 2px dashed #00f;
+  }
+  
 }

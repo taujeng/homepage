@@ -4,7 +4,15 @@ import "./header.css"
 const Header = () => {
   return (
     <div className="header-container">
-      this is a header
+      <div className="header-left">
+        left
+      </div>
+      <div className="header-logo">
+        homepage
+      </div>
+      <div className="header-right">
+        right
+      </div>
     </div>
   )
 }
