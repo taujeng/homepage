@@ -6,63 +6,82 @@ import WidgetBase from './components/widget/widgetBase/WidgetBase';
 
 export default function Home() {
 
-  const [list, setList] = useState([
-    "a",
-    "b",
-  ])
-  const [draggingIndex, setDraggingIndex] = useState<number | null>(null); // Track the currently dragged widget
+  // State for widgets with their positions
+  const [widgets, setWidgets] = useState([
+    { id: 'a', row: 1, column: 1 },
+    { id: 'b', row: 1, column: 2 },
+  ]);
 
-  const handleDragStart = (event: React.DragEvent<HTMLDivElement>, index: number) => {
-    setDraggingIndex(index);
-    event.dataTransfer.setData('text/plain', index.toString());
+  const [draggingWidget, setDraggingWidget] = useState(null);
+
+  // Total number of rows and columns
+  const rows = 3;
+  const columns = 3;
+
+  // Function to check if a cell is occupied
+  const isCellOccupied = (row, column) =>
+    widgets.some((w) => w.row === row && w.column === column);
+
+  const handleDragStart = (event, widget) => {
+    setDraggingWidget(widget);
+    event.dataTransfer.setData('widgetId', widget.id);
   };
 
-  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault(); // Prevent default to allow dropping
+  const handleDrop = (event, row, column) => {
+    event.preventDefault();
+    if (!draggingWidget) return;
+
+    // Prevent moving widget to an occupied cell
+    if (isCellOccupied(row, column)) {
+      return;
+    }
+
+    // Update widget position
+    setWidgets((prevWidgets) =>
+      prevWidgets.map((w) =>
+        w.id === draggingWidget.id ? { ...w, row, column } : w
+      )
+    );
+
+    setDraggingWidget(null);
   };
 
-  const handleDrop = (event: React.DragEvent<HTMLDivElement>, dropIndex: number) => {
-    const dragIndex = parseInt(event.dataTransfer.getData('text/plain'), 10);
-    if (dragIndex === dropIndex) return; // Avoid unnecessary updates
-
-    // Reorder the list
-    const newList = [...list];
-    const [draggedItem] = newList.splice(dragIndex, 1);
-    newList.splice(dropIndex, 0, draggedItem);
-
-    setList(newList);
-  };
-  const handleDragEnter = (event: React.DragEvent<HTMLDivElement>) => {
-    event.currentTarget.classList.add('widget-over');
-  };
-
-  const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
-    event.currentTarget.classList.remove('widget-over');
-  };
-
-  const handleDragEnd = () => {
-    setDraggingIndex(null); // Clear dragging state
+  const handleDragOver = (event) => {
+    event.preventDefault();
   };
   return (
     <div className="home-container">
-      {list.map((item, index) => (
-        <div
-          key={index}
-          draggable
-          className={`widget-wrapper ${draggingIndex === index ? 'widget-dragging' : ''}`}
-          onDragStart={(event) => handleDragStart(event, index)}
-          onDragOver={(event) => handleDragOver(event)}
-          onDrop={(event) => handleDrop(event, index)}
-          onDragEnter={(event) => handleDragEnter(event)}
-          onDragLeave={(event) => handleDragLeave(event)}
-          onDragEnd={handleDragEnd}
-      >
-        <WidgetBase 
-         
-         content={item} />
-      </div>
-      )
-        
+      {Array.from({ length: rows }, (_, rowIndex) =>
+        Array.from({ length: columns }, (_, colIndex) => {
+          // Check if a widget exists in this cell
+          const widget = widgets.find(
+            (w) => w.row === rowIndex + 1 && w.column === colIndex + 1
+          );
+
+          // Highlight valid drop targets during drag
+          const isDragging = !!draggingWidget;
+
+          return (
+            <div
+              key={`${rowIndex}-${colIndex}`}
+              className={`grid-cell ${isDragging && !widget ? 'valid-drop' : ''}`}
+              onDragOver={handleDragOver}
+              onDrop={(event) => handleDrop(event, rowIndex + 1, colIndex + 1)}
+            >
+              {widget ? (
+                <div
+                  className="widget-wrapper"
+                  draggable
+                  onDragStart={(event) => handleDragStart(event, widget)}
+                >
+                  <WidgetBase content={widget.id} />
+                </div>
+              ) : (
+                <div className="empty-placeholder">Drop Here</div>
+              )}
+            </div>
+          );
+        })
       )}
 
     </div>

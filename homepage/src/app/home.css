@@ -1,23 +1,29 @@
 .home-container {
   display: grid;
-  height: 90vh;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-rows: 250px;
   grid-template-columns: 20% 60% 20%;
+  height: 90vh;
   background-color: lightblue;
-  /* Styling for individual widgets */
 }
-.home-container .widget-wrapper {
+.home-container .grid-cell {
+  border: 1px dashed #ccc;
+  position: relative;
+  /* Highlight valid drop targets */
+}
+.home-container .grid-cell .widget-wrapper {
   border: 1px solid red;
-  min-height: 250px;
-  align-self: start;
-  padding: 10px;
+  min-height: 200px;
   background-color: white;
   border-radius: 8px;
-  transition: transform 0.2s, opacity 0.2s;
+  padding: 10px;
+  margin: 15px;
 }
-.home-container .widget-dragging {
-  opacity: 0.5;
-  transform: scale(0.95);
-}
-.home-container .widget-over {
-  border: 2px dashed #00f;
+.home-container .grid-cell .empty-placeholder {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-style: italic;
 }/*# sourceMappingURL=home.css.map */
