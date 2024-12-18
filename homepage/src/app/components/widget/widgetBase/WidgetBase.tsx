@@ -1,9 +1,11 @@
 import React from 'react'
 import "./widgetBase.css"
 
-const WidgetBase = ( {content} ) => {
+const WidgetBase = ( {content, style} ) => {
+  const {id, row, column} = content;
   return (
-    <div className="widgetBase-container">WidgetBase {content}</div>
+    <div className="widgetBase-container"
+     style={style}>WidgetBase: ID: {id}, row: {row}, column: {column}</div>
   )
 }
 

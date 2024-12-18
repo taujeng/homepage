@@ -6,12 +6,7 @@
   height: 90vh;
   background-color: lightblue;
 }
-.home-container .grid-cell {
-  border: 1px dashed #ccc;
-  position: relative;
-  /* Highlight valid drop targets */
-}
-.home-container .grid-cell .widget-wrapper {
+.home-container .widget-wrapper {
   border: 1px solid red;
   min-height: 200px;
   background-color: white;
@@ -19,11 +14,20 @@
   padding: 10px;
   margin: 15px;
 }
-.home-container .grid-cell .empty-placeholder {
+.home-container .empty-placeholder {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #999;
   font-style: italic;
+}
+.home-container .grid-cell {
+  border: 1px dashed #ccc;
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Highlight valid drop targets */
 }/*# sourceMappingURL=home.css.map */
