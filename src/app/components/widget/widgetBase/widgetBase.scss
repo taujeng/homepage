@@ -1,0 +1,16 @@
+.widgetBase-container {
+  border: 1px red solid;
+  min-height: 220px;
+  align-self: start;
+  padding: 10px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+}
+
+.widgetBase-container:active {
+  cursor: grabbing;
+}

@@ -1,0 +1,39 @@
+.home-container {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-rows: 250px;
+  grid-template-columns: 20% 60% 20%;
+  height: calc(100vh - 10vh);
+  background-color: lightblue;
+  .widget-wrapper {
+    border: 1px solid red;
+    min-height: 200px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 15px;
+  }
+  .empty-placeholder {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-style: italic;
+  }
+  .grid-cell {
+    border: 1px dashed #ccc;
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      /* Highlight valid drop targets */
+    // &.valid-drop {
+    //   background-color: #d4edda; /* Light green */
+    //   border: 1px dashed #28a745; /* Green */
+    // }
+
+  }
+  
+}

@@ -1,0 +1,15 @@
+.grid {
+  background-color: white;
+  color: black;
+  height: calc(100vh - 10vh);
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+  grid-template-rows: repeat(5, 20%);
+  .widget {
+    border: 1px red solid;
+  }
+  .a {
+    grid-column: 2 / span 3;
+    grid-row: 1 / span 2;
+  }
+}
