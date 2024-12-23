@@ -1,0 +1,21 @@
+.quotes-container {
+  background-color: white;
+  color: black;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.quotes-container .quote {
+  margin: 10px 0;
+  font-size: 1.5em;
+}
+.quotes-container .quotes-bottom {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+.quotes-container .quotes-bottom button {
+  margin: 10px 20px;
+}/*# sourceMappingURL=quotes.css.map */
