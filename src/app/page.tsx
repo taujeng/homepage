@@ -3,13 +3,14 @@
 import React, {useState, useEffect} from 'react'
 import './home.css'
 import WidgetBase from './components/widget/widgetBase/WidgetBase';
+import Quotes from './components/widget/widgetBase/quotes/Quotes';
 
 export default function Home() {
 
   // State for widgets with their positions
   const [widgets, setWidgets] = useState([
-    { id: 'a', row: 0, col: 0, rowEnd: 1, colEnd: 0 },
-    { id: 'b', row: 2, col: 2, rowEnd: 2, colEnd: 2 },
+    { widget: <Quotes /> ,id: 'a', row: 0, col: 0, rowEnd: 1, colEnd: 0 },
+    { widget: "" ,id: 'b', row: 2, col: 2, rowEnd: 2, colEnd: 2 },
   ]);
   const [grid, setGrid] = useState(Array(3).fill(null).map(() => 
     Array(3).fill(null)));

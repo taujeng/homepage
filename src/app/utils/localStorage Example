@@ -1,0 +1,83 @@
+const dashboardData = {
+  // Widget-specific data
+  widgets: {
+    quotes: {
+      currentQuote: "The best way to predict...",
+      selectedCategory: "Success",
+      favorites: ["quote1", "quote2"],
+      settings: {
+        refreshInterval: 24, // hours
+        displayMode: "minimal"
+      }
+    },
+    // Ready for future widgets like:
+    weather: {
+      location: "New York",
+      unit: "celsius",
+      favorites: ["NYC", "London"]
+    },
+    tasks: {
+      items: [],
+      sortBy: "date",
+      filterBy: "active"
+    }
+  },
+
+  // Layout information
+  layout: {
+    widgets: [
+      { 
+        id: 'a',
+        type: 'quotes',
+        position: {
+          row: 0,
+          col: 0,
+          rowEnd: 1,
+          colEnd: 0
+        }
+      },
+      {
+        id: 'b',
+        type: '',
+        position: {
+          row: 2,
+          col: 2,
+          rowEnd: 2,
+          colEnd: 2
+        }
+      }
+    ]
+  },
+
+  // Global settings
+  global: {
+    theme: "dark",
+    language: "en",
+    gridSize: {
+      rows: 3,
+      columns: 3
+    },
+    preferences: {
+      autoSave: true,
+      widgetAnimations: true,
+      compactMode: false
+    },
+    lastModified: "2024-01-08T12:00:00Z"
+  },
+
+  // User data
+  user: {
+    id: "user123",
+    settings: {
+      dashboardName: "My Dashboard",
+      timezone: "UTC-5"
+    }
+  },
+
+  // Meta information
+  meta: {
+    version: "1.0",
+    lastSaved: "2024-01-08T12:00:00Z",
+    created: "2024-01-01T00:00:00Z"
+  }
+}

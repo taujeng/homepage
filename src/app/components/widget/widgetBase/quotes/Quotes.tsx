@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import "./quotes.css"
+import { Storage } from '@/app/utils/LocalStorage.utils';
 
 const Quotes = () => {
-  const [quote, setQuote] = useState('');
+  const [quote, setQuote] = useState(null);
   const [filteredQuotes, setFilteredQuotes] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [favorites, setFavorites] = useState([]);
@@ -19,6 +20,13 @@ const Quotes = () => {
     { text: "Dream big, work hard, stay focused.", category: "Success" }
   ];
 
+  useEffect(() => {
+    const initQuote = Storage.getWidget("quotes")
+    if (initQuote) {
+      setQuote(initQuote)
+    }
+  }, [])
+
   // Get unique categories from the quotesList array
   const categories = [...new Set(quotesList.map((quote) => quote.category))];
 
@@ -27,6 +35,7 @@ const Quotes = () => {
     const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
     setQuote(filteredQuotes[randomIndex]?.text);
   };
+
 
   // Handle category selection
   const handleCategoryChange = (category) => {
@@ -52,9 +61,14 @@ const Quotes = () => {
   };
 
   useEffect(() => {
-    setFilteredQuotes(quotesList);
-    getRandomQuote(); // Get the first random quote
+    setFilteredQuotes(quotesList); // Populate filteredQuotes with all quotes
   }, []);
+
+  useEffect(() => {
+    if (filteredQuotes.length > 0) {
+      getRandomQuote(); // Get the first random quote once filteredQuotes is populated
+    }
+  }, [filteredQuotes]);
 
   return (
     <div title="Quotes" className="quotes-container">
@@ -72,7 +86,7 @@ const Quotes = () => {
           ))}
         </select>
       </div>
-      <div className="quote">{quote}</div>
+      <div className="quote">{quote && quote}</div>
 
 
       <div className="quotes-bottom">
